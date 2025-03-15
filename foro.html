@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foro de Discusión - Educación Colaborativa</title>
+    <link rel="stylesheet" href="style/foro.css">
+    <script src="js/foro.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Foro de Discusión</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="planes.html">Planes de Estudio</a></li>
+                <li><a href="faq.html">Preguntas Frecuentes</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Debates y Discusiones</h2>
+            <p>Comparte tus dudas, experiencias y métodos de estudio con la comunidad. Aquí puedes interactuar con otros estudiantes y profesores para resolver problemas, discutir temas de interés y aprender de manera colaborativa.</p>
+        </section>
+
+        <section>
+            <h2>Temas Populares</h2>
+            <div class="temas">
+                <div class="tema">
+                    <h3>Matemáticas Avanzadas</h3>
+                    <img src="img/Matematicas.jpg" alt="Matematicas">
+                    <p>Discusión sobre cálculo diferencial e integral. Únete para resolver problemas juntos.</p>
+                    <a href="#" class="btn" onclick="abrirVentana('Matemáticas Avanzadas')">Participar</a>
+                </div>
+                <div class="tema">
+                    <h3>Métodos de Estudio Efectivos</h3>
+                    <img src="img/Metodo.jpg" alt="Metodo">
+                    <p>Comparte tus técnicas de estudio y aprende de las de otros.</p>
+                    <a href="#" class="btn" onclick="abrirVentana('Métodos de Estudio Efectivos')">Participar</a>
+                </div>
+                <div class="tema">
+                    <h3>Preparación para Exámenes</h3>
+                    <img src="img/examen-4.jpeg" alt="Examen">
+                    <p>Consejos y estrategias para enfrentar exámenes con confianza.</p>
+                    <a href="#" class="btn" onclick="abrirVentana('Preparación para Exámenes')">Participar</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <div id="ventanaModal" class="modal">
+        <h2 id="chatTitulo">Chat Anónimo</h2>
+        <div id="chatMensajes" style="height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;"></div>
+        <input type="text" id="mensajeInput" placeholder="Escribe tu mensaje...">
+        <button onclick="agregarMensaje()">Enviar</button>
+        <button onclick="cerrarVentana()">Cerrar</button>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Educación Colaborativa</p>
+    </footer>
+</body>
+</html>

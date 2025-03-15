@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planes de Estudio - Educación Colaborativa</title>
+    <link rel="stylesheet" href="style/planes.css">
+</head>
+<body>
+    <header>
+        <h1>Planes de Estudio</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="foro.html">Foro de Discusión</a></li>
+                <li><a href="faq.html">Preguntas Frecuentes</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Recursos Educativos</h2>
+            <p>Encuentra y comparte planes de estudio organizados por nivel educativo. Aquí puedes crear tu propio plan o unirte a los planes creados por la comunidad.</p>
+        </section>
+
+        <div class="planes">
+            <div class="plan">
+                <h2>Crear un Plan de Estudio</h2>
+                <p>Crea tu propio plan de estudio personalizado. ¡Comparte tus conocimientos con la comunidad!</p>
+                <button id="crearPlanBtn">Crear Plan</button>
+            </div>
+
+            <div class="plan">
+                <h2>Planes de la Comunidad</h2>
+                <p>Explora y únete a los planes de estudio creados por otros miembros de la comunidad.</p>
+                <button id="verPlanesBtn">Ver Planes</button>
+            </div>
+        </div>
+
+        <div id="modalCrearPlan" class="modal">
+            <div class="modal-contenido">
+                <span class="cerrar">&times;</span>
+                <h2>Crear un Plan de Estudio</h2>
+                <form id="formCrearPlan">
+                    <div class="campo">
+                        <label for="nombrePlan">Nombre del Plan:</label>
+                        <input type="text" id="nombrePlan" name="nombrePlan" required>
+                    </div>
+                    <div class="campo">
+                        <label for="descripcionPlan">Descripción:</label>
+                        <textarea id="descripcionPlan" name="descripcionPlan" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Guardar Plan</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="modalVerPlanes" class="modal">
+            <div class="modal-contenido">
+                <span class="cerrar">&times;</span>
+                <h2>Planes de la Comunidad</h2>
+                <div id="listaPlanes">
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Educación Colaborativa</p>
+    </footer>
+
+    <script src="js/planes.js"></script>
+</body>
+</html>
