@@ -2,7 +2,7 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = htmlspecialchars($_POST['nombre']);
     $email = htmlspecialchars($_POST['email']);
-    $pregunta = htmlspecialchars($_POST['pregunta']);
+    $pregunta = htmlspecialchars($_POST['Tu pregunta']);
 
     $destinatario = "crzveg473@gmail.com"; // Cambia esto por tu correo
     $asunto = "Nueva Pregunta de $nombre";
