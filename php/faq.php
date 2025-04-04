@@ -1,21 +1,51 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre = htmlspecialchars($_POST['nombre']);
-    $email = htmlspecialchars($_POST['email']);
-    $pregunta = htmlspecialchars($_POST['Tu pregunta']);
+// Conexión a la base de datos
+$servername = "localhost";
+$username = "root"; // Cambia según tu configuración
+$password = ""; // Cambia según tu configuración
+$database = "dbconexion";
 
-    $destinatario = "crzveg473@gmail.com"; // Cambia esto por tu correo
-    $asunto = "Nueva Pregunta de $nombre";
-    $mensaje = "Nombre: $nombre\n";
-    $mensaje .= "Correo: $email\n\n";
-    $mensaje .= "Pregunta:\n$pregunta";
+$conn = new mysqli($servername, $username, $password, $database);
 
-    $headers = "From: $email";
-
-    if (mail($destinatario, $asunto, $mensaje, $headers)) {
-        echo "<p>¡Tu pregunta ha sido enviada! Te responderemos pronto.</p>";
-    } else {
-        echo "<p>Hubo un error al enviar tu pregunta. Inténtalo de nuevo.</p>";
-    }
+// Verificar conexión
+if ($conn->connect_error) {
+    die(json_encode(["success" => false, "message" => "Error en la conexión a la base de datos."]));
 }
+
+// Obtener datos del formulario
+$nombre = $_POST["nombre"] ?? '';
+$email = $_POST["email"] ?? '';
+$pregunta = $_POST["pregunta"] ?? '';
+
+// Validar que los campos no estén vacíos
+if (empty($nombre) || empty($email) || empty($pregunta)) {
+    echo json_encode(["success" => false, "message" => "Todos los campos son obligatorios."]);
+    exit;
+}
+
+// Preparar la consulta SQL
+$stmt = $conn->prepare("INSERT INTO preguntas (nombre, correo, pregunta) VALUES (?, ?, ?)");
+$stmt->bind_param("sss", $nombre, $email, $pregunta);
+
+// Ejecutar y responder
+if ($stmt->execute()) {
+    echo json_encode(["success" => true, "message" => "Tu pregunta ha sido enviada correctamente."]);
+} else {
+    echo json_encode(["success" => false, "message" => "Error al enviar la pregunta."]);
+}
+$result = $conn->query("SELECT nombre, pregunta FROM preguntas ORDER BY id DESC LIMIT 5");
+
+if ($result->num_rows > 0) {
+    echo "<div class='preguntas-guardadas'><h2>Últimas Preguntas</h2>";
+    while($row = $result->fetch_assoc()) {
+        echo "<div class='pregunta'>";
+        echo "<h4>" . htmlspecialchars($row["nombre"]) . " preguntó:</h4>";
+        echo "<p>" . htmlspecialchars($row["pregunta"]) . "</p>";
+        echo "</div>";
+    }
+    echo "</div>";
+}
+// Cerrar conexión
+$stmt->close();
+$conn->close();
 ?>
